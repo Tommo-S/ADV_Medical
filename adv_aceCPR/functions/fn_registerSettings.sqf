@@ -1,5 +1,5 @@
 /*
-ADV-aceCPR - by Belbo
+ADV-aceCPR - by Belbo, edited by Tommo
 */
 
 #define CBA_SETTINGS_CAT "ADV - ACE CPR"
@@ -112,6 +112,69 @@ missionNamespace setVariable ["adv_aceCPR_AED_stationType",nil];
 	,"""Land_Defibrillator_F"""
 	,true
 ] call CBA_Settings_fnc_init;
+
+//Additions by Tommo
+[
+	"adv_cpr_EPI_Revive"
+	,"SLIDER"
+	,"Epinephrine Revive Bonus (diminishes over time)"
+	,CBA_SETTINGS_CAT
+	,[0,100,20,0]
+	,true
+    ,{}
+] call CBA_Settings_fnc_init;
+
+[
+	"adv_cpr_Morphine_Revive"
+	,"SLIDER"
+	,"Morphine Revive Malus (diminishes over time)"
+	,CBA_SETTINGS_CAT
+	,[0,100,10,0]
+	,true
+    ,{}
+] call CBA_Settings_fnc_init;
+
+
+[
+	"adv_cpr_minBloodVolume"
+	,"SLIDER"
+	,"Minimum Blood Volume % on Revive"
+	,CBA_SETTINGS_CAT
+	,[0,100,30,0]
+	,true
+    ,{}
+] call CBA_Settings_fnc_init;
+
+[
+	"adv_cpr_randBloodVolume"
+	,"SLIDER"
+	,"+/- Blood Volume Variation % When Below Threshold"
+	,CBA_SETTINGS_CAT
+	,[0,100,0,0]
+	,true
+    ,{}
+] call CBA_Settings_fnc_init;
+
+[
+	"adv_cpr_minHeartRate"
+	,"SLIDER"
+	,"Min Revive Heartrate for CPR (AED is +10)"
+	,CBA_SETTINGS_CAT
+	,[0,100,30,0]
+	,true
+    ,{}
+] call CBA_Settings_fnc_init;
+
+[
+	"adv_cpr_randHeartRate"
+	,"SLIDER"
+	,"+/- Heart Rate Variation On Revive"
+	,CBA_SETTINGS_CAT
+	,[0,100,0,0]
+	,true
+    ,{}
+] call CBA_Settings_fnc_init;
+
 
 /*
 //Disable for certain classes

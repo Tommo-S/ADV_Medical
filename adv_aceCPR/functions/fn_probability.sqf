@@ -1,5 +1,5 @@
 /*
-ADV_aceCPR_fnc_probability - by Belbo
+ADV_aceCPR_fnc_probability - by Belbo, edited by Tommo
 */
 
 params ["_caller", "_target"];
@@ -28,13 +28,18 @@ private _probability = call {
 //exit if probability has been set to 0:
 if ( _probability isEqualTo 0 ) exitWith {0};
 
+//Changes by Tommo
+//Made Epi/Morphine bonus/malus CBA option configurable.
+private _epiBonus = missionNamespace getvariable ["adv_cpr_EPI_Revive",20];
+private _morphineMalus = missionNamespace getvariable ["adv_cpr_Morphine_Revive",10];
+
 //if patient has morphine or epinephrine in his circulation, the probability changes depending on amount of medication in system:
 private _gotMorphine = _target getVariable ["ace_medical_morphine_insystem",0];
 private _gotAtropine = _target getVariable ["ace_medical_atropine_insystem",0];
 private _gotAdenosine = _target getVariable ["ace_medical_adenosine_insystem",0];
 private _reduction = _gotMorphine+_gotAtropine+_gotAdenosine;
 if ( _reduction > 0 ) then {
-	private _probabilityGain = 10*_reduction;
+	private _probabilityGain = _morphineMalus*_reduction;
 	_probability = _probability - (round _probabilityGain);
 	
 	//diagnostics:
@@ -43,7 +48,7 @@ if ( _reduction > 0 ) then {
 
 private _gotEpi = _target getVariable ["ace_medical_epinephrine_insystem",0];
 if ( _gotEpi > 0 ) then {
-	private _probabilityGain = 20*_gotEpi;
+	private _probabilityGain = _epiBonus*_gotEpi;
 	_probability = _probability + (round _probabilityGain);
 	
 	//diagnostics:
